@@ -1,0 +1,5 @@
+Policy Rule Milani (2007)
+
+i=0.914*i(-1)+(1-0.914)*(1.484*pi+0.801*x)
+
+is a common policy rule under AL not yet implemented in MMB

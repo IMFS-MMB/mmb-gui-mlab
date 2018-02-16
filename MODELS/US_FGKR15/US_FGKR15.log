@@ -1,0 +1,82 @@
+Starting Dynare (version 4.4.3).
+Starting preprocessing of the model file ...
+Substitution of endo leads >= 2: added 9 auxiliary variables and equations.
+Substitution of endo lags >= 2: added 14 auxiliary variables and equations.
+Found 86 equation(s).
+Evaluating expressions...done
+Computing static model derivatives:
+ - order 1
+Computing dynamic model derivatives:
+ - order 1
+ - order 2
+Processing outputs ...done
+Preprocessing completed.
+Starting MATLAB/Octave computing.
+
+STEADY-STATE RESULTS:
+
+bdt               		 2.72102
+ct                		 -0.107317
+dt                		 0
+gt                		 0.2
+ht                		 -1.09861
+inflt             		 0.00448991
+invt              		 -0.77161
+kt                		 3.43308
+kbt               		 3.43308
+lamt              		 1.5107
+mct               		 -0.0487902
+miut              		 1.23009
+miubt             		 1.10838
+proft             		 0.0809827
+Rt                		 0.0100051
+rkt               		 -3.96753
+tauct             		 0.08
+taukt             		 0.38
+tauwt             		 0.21
+utilt             		 0
+wt                		 1.13454
+yt                		 0.531002
+gzt               		 0.00498754
+gyt               		 0.00498754
+gct               		 0.00498754
+git               		 0.00498754
+gwt               		 0.00498754
+egt               		 0
+sigct             		 -7.12
+siggt             		 -6.2
+sigkt             		 -4.9
+sigwt             		 -6
+bdtF              		 2.72102
+ctF               		 -0.107317
+gtF               		 0.2
+htF               		 -1.09861
+infltF            		 0.00448991
+invtF             		 -0.77161
+ktF               		 3.43308
+kbtF              		 3.43308
+lamtF             		 1.5107
+mctF              		 -0.0487902
+miutF             		 1.23009
+miubtF            		 1.10838
+proftF            		 0.0809827
+RtF               		 0.0100051
+rktF              		 -3.96753
+tauctF            		 0.08
+tauktF            		 0.38
+tauwtF            		 0.21
+utiltF            		 0
+wtF               		 1.13454
+ytF               		 0.531002
+gytF              		 0.00498754
+gctF              		 0.00498754
+gitF              		 0.00498754
+gwtF              		 0.00498754
+interest          		 0
+inflation         		 0
+inflationq        		 0
+output            		 0
+outputgap         		 0
+fispol            		 0
+Total computing time : 0h00m02s
+Note: warning(s) encountered in MATLAB/Octave code

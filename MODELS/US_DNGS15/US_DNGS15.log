@@ -1,0 +1,72 @@
+Starting Dynare (version 4.4.3).
+Starting preprocessing of the model file ...
+Substitution of endo leads >= 2: added 9 auxiliary variables and equations.
+Substitution of endo lags >= 2: added 14 auxiliary variables and equations.
+Found 65 equation(s).
+Evaluating expressions...done
+Computing static model derivatives:
+ - order 1
+Computing dynamic model derivatives:
+ - order 1
+ - order 2
+Processing outputs ...done
+Preprocessing completed.
+Starting MATLAB/Octave computing.
+[Warning: Some of the parameters have no value (star) when using steady. If these parameters are not initialized in a steadystate file,
+Dynare may not be able to solve the model...] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test_for_deep_parameters_calibration', 'C:\dynare\4.4.3\matlab\test_for_deep_parameters_calibration.m', 46)" style="font-weight:bold">test_for_deep_parameters_calibration</a> (<a href="matlab: opentoline('C:\dynare\4.4.3\matlab\test_for_deep_parameters_calibration.m',46,0)">line 46</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('steady', 'C:\dynare\4.4.3\matlab\steady.m', 33)" style="font-weight:bold">steady</a> (<a href="matlab: opentoline('C:\dynare\4.4.3\matlab\steady.m',33,0)">line 33</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('US_DNGS15', 'C:\Users\Farkas\Dropbox\MMB_2_2_With_AL\MMB 2.2\MMB_2_2\MODELS\US_DNGS15\US_DNGS15.m', 797)" style="font-weight:bold">US_DNGS15</a> (<a href="matlab: opentoline('C:\Users\Farkas\Dropbox\MMB_2_2_With_AL\MMB 2.2\MMB_2_2\MODELS\US_DNGS15\US_DNGS15.m',797,0)">line 797</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', 'C:\dynare\4.4.3\matlab\dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('C:\dynare\4.4.3\matlab\dynare.m',180,0)">line 180</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('MMBOPT1', 'C:\Users\Farkas\Dropbox\MMB_2_2_With_AL\MMB 2.2\MMB_2_2\MMB_OPTIONS\MMBOPT1.m', 187)" style="font-weight:bold">MMBOPT1</a> (<a href="matlab: opentoline('C:\Users\Farkas\Dropbox\MMB_2_2_With_AL\MMB 2.2\MMB_2_2\MMB_OPTIONS\MMBOPT1.m',187,0)">line 187</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('OPT1MENU>togglebutton1_Callback', 'C:\Users\Farkas\Dropbox\MMB_2_2_With_AL\MMB 2.2\MMB_2_2\MMB_OPTIONS\OPT1MENU.m', 320)" style="font-weight:bold">OPT1MENU>togglebutton1_Callback</a> (<a href="matlab: opentoline('C:\Users\Farkas\Dropbox\MMB_2_2_With_AL\MMB 2.2\MMB_2_2\MMB_OPTIONS\OPT1MENU.m',320,0)">line 320</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('gui_mainfcn', 'C:\Program Files\MATLAB\R2015b\toolbox\matlab\guide\gui_mainfcn.m', 95)" style="font-weight:bold">gui_mainfcn</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2015b\toolbox\matlab\guide\gui_mainfcn.m',95,0)">line 95</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('OPT1MENU', 'C:\Users\Farkas\Dropbox\MMB_2_2_With_AL\MMB 2.2\MMB_2_2\MMB_OPTIONS\OPT1MENU.m', 19)" style="font-weight:bold">OPT1MENU</a> (<a href="matlab: opentoline('C:\Users\Farkas\Dropbox\MMB_2_2_With_AL\MMB 2.2\MMB_2_2\MMB_OPTIONS\OPT1MENU.m',19,0)">line 19</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('matlab.graphics.internal.figfile.FigFile/read>@(hObject,eventdata)OPT1MENU(''togglebutton1_Callback'',hObject,eventdata,guidata(hObject))')" style="font-weight:bold">matlab.graphics.internal.figfile.FigFile/read>@(hObject,eventdata)OPT1MENU('togglebutton1_Callback',hObject,eventdata,guidata(hObject))</a>] 
+
+STEADY-STATE RESULTS:
+
+c                 		 0
+R                 		 0
+pi                		 0
+L                 		 0
+qk                		 0
+i                 		 0
+Rktil             		 0
+rk                		 0
+kbar              		 0
+n                 		 0
+y                 		 0
+k                 		 0
+u                 		 0
+mc                		 0
+w                 		 0
+wh                		 0
+z                 		 0
+ztil              		 0
+mu                		 0
+sigw              		 0
+laf               		 0
+law               		 0
+g                 		 0
+b                 		 0
+c_f               		 0
+r_f               		 0
+L_f               		 0
+qk_f              		 0
+i_f               		 0
+rk_f              		 0
+y_f               		 0
+k_f               		 0
+u_f               		 0
+kbar_f            		 0
+w_f               		 0
+psi_g             		 0
+interest          		 0
+inflation         		 0
+inflationq        		 0
+outputgap         		 0
+output            		 0
+fispol            		 0
+Total computing time : 0h00m01s
+Note: warning(s) encountered in MATLAB/Octave code
