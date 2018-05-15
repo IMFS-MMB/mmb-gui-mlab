@@ -22,7 +22,7 @@ function varargout = OPT1MENU_AL(varargin)
 
 % Edit the above text to modify the response to help OPT1MENU_AL
 
-% Last Modified by GUIDE v2.5 01-Jun-2017 08:59:28
+% Last Modified by GUIDE v2.5 26-Apr-2018 14:51:06
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -57,7 +57,17 @@ handles.output = hObject;
 global modelslist;
 % Update handles structure
 guidata(hObject, handles);
-
+global modelsvec
+try
+    set(modelslist(find(modelsvec>0)),'Value',1);
+    modelstag = {get(modelslist(find(modelsvec>0)),'Tag')};
+    for i = 1:size(modelstag,1)
+        eval(['arrayfun(@(x) set(x, ''Value'',1), handles.', modelstag{i,:} ');']);
+    end
+catch
+    
+end
+    
 % UIWAIT makes OPT1MENU_AL wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
@@ -112,3 +122,22 @@ function togglebutton1_Callback(hObject, eventdata, handles)
 
 uiresume
 close(gcbf)
+
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Hint: delete(hObject) closes the figure
+global AL_Models;
+global modelsvec;
+if max(modelsvec(AL_Models)) 
+else
+    modelsvec(AL_Models) = 0;
+    handles.almodels1 =  findobj(findobj(allchild(findobj(eventdata.Source.Parent.Children(1),'Tag','uipanel2'))),'Tag','almodelsopt1'); % Find the almodelsopt1 tag in the parent figure and set it to 0.
+    set(handles.almodels1,'Value',0)
+    
+end
+
+delete(hObject);

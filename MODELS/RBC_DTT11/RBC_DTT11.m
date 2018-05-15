@@ -4,7 +4,6 @@
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-clear all
 tic;
 global M_ oo_ options_ ys0_ ex0_ estimation_info
 options_ = [];
@@ -601,8 +600,6 @@ end;
 if M_.exo_det_nbr > 0;
 	oo_.exo_det_simul = [ones(M_.maximum_lag,1)*oo_.exo_det_steady_state'];
 end;
-options_.solve_algo = 2;
-steady;
 oo_.dr.eigval = check(M_,options_,oo_);
 %
 % SHOCKS instructions

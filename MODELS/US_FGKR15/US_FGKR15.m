@@ -4,7 +4,6 @@
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-clear all
 tic;
 global M_ oo_ options_ ys0_ ex0_ estimation_info
 options_ = [];
@@ -1150,7 +1149,6 @@ M_.Sigma_e(8, 8) = 1;
 M_.Sigma_e(9, 9) = 1;
 M_.Sigma_e(10, 10) = 1;
 M_.Sigma_e(11, 11) = 1;
-steady;
 save('US_FGKR15_results.mat', 'oo_', 'M_', 'options_');
 if exist('estim_params_', 'var') == 1
   save('US_FGKR15_results.mat', 'estim_params_', '-append');

@@ -16,7 +16,7 @@
 %
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see http://www.gnu.org/licenses/.
-function [ys,check]=US_CMRCEE_steadystate(ys,exe)
+function [ys,check]=US_CMR14noFA_steadystate(ys,exe)
 % compute s.s.
 global M_ options_
 check = 0;
@@ -31,9 +31,10 @@ end
 %determine whether we're looking for the steady state of the cee or of the
 %cmr model
 cee=0;
-if exist('gamma_p') == 0
+if exist('gamma_p') == 0 
     cee=1;
 end
+
 
 iotaw2   = 1-iotaw_p;
 iota2    = 1 - iota_p;
@@ -113,12 +114,18 @@ Re_obs          = 1;
 pinvest_obs     = 1;
 RealRe_obs      = 1;
 
-G          = (normcdf((log(omegabar) + sigma^2 / 2) / sigma - sigma));
-Gf         = (normcdf((log(omegabarf) + sigma^2 / 2) / sigma - sigma));
-H          = (normcdf((log(omegabar) + sigma^2 / 2) / sigma - 2 * sigma));
-Hf         = (normcdf((log(omegabarf) + sigma^2 / 2) / sigma - 2 * sigma));
-bankruptcy = (normcdf(((log(omegabar) + sigma^2 / 2) / sigma)));
-bankruptcyf= (normcdf(((log(omegabarf) + sigma^2 / 2) / sigma)));
+%G          = (normcdf((log(omegabar) + sigma^2 / 2) / sigma - sigma));
+%Gf         = (normcdf((log(omegabarf) + sigma^2 / 2) / sigma - sigma));
+%H          = (normcdf((log(omegabar) + sigma^2 / 2) / sigma - 2 * sigma));
+%Hf         = (normcdf((log(omegabarf) + sigma^2 / 2) / sigma - 2 * sigma));
+%bankruptcy = (normcdf(((log(omegabar) + sigma^2 / 2) / sigma)));
+%bankruptcyf= (normcdf(((log(omegabarf) + sigma^2 / 2) / sigma)));
+G          = 0;
+Gf         = 0;
+H          = 0;
+Hf         = 0;
+bankruptcy = 0;
+bankruptcyf= 0;
 F          = bankruptcy;
 Ff         = bankruptcyf; 
 volEquity = (1 + Rk ) * q  * kbar  / n  * sqrt( (exp(sigma^2)/(1-F )*(1-H ) - ((1-G )/(1-F ))^2) );

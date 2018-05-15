@@ -1,4 +1,4 @@
-Starting Dynare (version master-2017-05-12-ae50f25).
+Starting Dynare (version 4.4.3).
 Starting preprocessing of the model file ...
 Substitution of endo leads >= 2: added 9 auxiliary variables and equations.
 Substitution of endo lags >= 2: added 14 auxiliary variables and equations.
@@ -9,7 +9,7 @@ Computing static model derivatives:
 Computing dynamic model derivatives:
  - order 1
  - order 2
-Processing outputs ...
-done
+Processing outputs ...done
 Preprocessing completed.
-Total computing time : 0h00m00s
+Starting MATLAB/Octave computing.
+Total computing time : 0h01m27s

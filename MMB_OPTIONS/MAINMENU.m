@@ -54,9 +54,6 @@ function MAINMENU_OpeningFcn(hObject, eventdata, handles, varargin)
 
         checkall(handles.onerule,0);
         checkall(handles.onemodel,0);
-        checkall(handles.robust,0);
-        checkall(handles.learning,0);
-
 
 % Choose default command line output for MAINMENU
 handles.output = hObject;
@@ -91,11 +88,7 @@ switch find(exoptions>0)
     case 2
         OPT2MENU;       
         close(gcbf)
-    case 3
-        disp('The exercise with robust policy rules is under construction.')  
-    case 4
-        disp('Adaptive learning models are available under the One policy rule, many models and the One model, many policy rules options.')
-
+    
 end
 
 uiresume
@@ -124,7 +117,7 @@ switch get(eventdata.NewValue,'Tag')   % Get Tag of selected object
                       '(monetary policy shock and fiscal policy shock) and autocorrelation                ' 
                       'functions of common variables in response to all shocks.                           '
                       '                                                                                   '
-                      ' Currently, eight MP rules are pre-programmed. These include rules from            '  
+                      'Currently, nine MP rules are pre-programmed. These include rules from              '  
                       'Taylor (1993), Levin et al. (2003), Smets and Wouters (2007),                      '       
                       'Orphanides and Wieland (2013) and others. Additionally, users have the             '
                       'option to specify their own policy rule.                                           ']);
@@ -137,7 +130,7 @@ switch get(eventdata.NewValue,'Tag')   % Get Tag of selected object
         exoptions(2)=1;
         text =  char(['Brief Description                                                                  '
                       '                                                                                   '
-                      ' This exercise allows the user to explore the properties of a particular           '
+                      'This exercise allows the user to explore the properties of a particular            '
                       'model in greater detail, under alternative monetary policy (MP) rules.             '
                       'More specifically, users can compute impulse response functions of model           '
                       'variables to all model-specific shocks. The autocorrelation analysis shows         '
@@ -156,32 +149,7 @@ switch get(eventdata.NewValue,'Tag')   % Get Tag of selected object
                      % 'the persistence of endogenous variables varies according to the MP rules used.     ''A detailed description of this exercise is provided in the following document:     ']);                              
         set(handles.text1, 'String', text); 
         set(handles.pushbutton1, 'Enable', 'on'); 
-    case 'robust'
-        z=1:max(size(exoptions));
-        exoptions(z)=0;
-        exoptions(3)=1;
-        text =  char(['Under Construction']);
-        set(handles.text1, 'String', text); 
-        set(handles.pushbutton1, 'Enable', 'on'); 
-    case 'learning'
-        z=1:max(size(exoptions));
-        exoptions(z)=0;
-        exoptions(4)=1;
-        text =  char(['Brief Description                                                                  '
-                      '                                                                                   '
-                      ' Adaptive learning models assume that private agents form their expectations       ' 
-                      'under imperfect knowledge. They treat forward looking variables as linear functions'
-                      'of past model variables.                                                           '
-                      'Models in the MMB feature perpetual, constant gain learning, where beliefs,        '
-                      'i.e. the coefficients of linear functions, are re-estimated every period using a   '
-                      'recursive least squares algorithm.                                                 '
-                      '                                                                                   '
-                      ' Adaptive learning models are available under the One policy rule, many models or  '
-                      'the One model, many policy rules options. For details please consult the manual.   ' 
-                      'Please note: Forward looking policy rules cannot be chosen.                        ']);
-        set(handles.text1, 'String', text); 
-        set(handles.pushbutton1, 'Enable', 'on'); 
-end
+    end
 uiwait
 
 

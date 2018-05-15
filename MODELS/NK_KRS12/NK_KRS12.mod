@@ -249,9 +249,9 @@ xiD=rhoD*xiD(-1)+eps_D;
 v=rhov*v(-1)+eps_v;
 end;
 
-steady;
+%steady;
 
-check;
+%check;
 
 shocks;
 var eps_A; stderr 1.5;

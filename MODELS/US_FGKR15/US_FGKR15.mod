@@ -577,7 +577,7 @@ var interest_ = 1;
 
 end;
 
-steady ;
+%steady ;
 
 //stoch_simul(order = 1, irf = 20) interest inflation inflationq output outputgap;
 

@@ -4,7 +4,6 @@
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-clear all
 tic;
 global M_ oo_ options_ ys0_ ex0_ estimation_info
 options_ = [];
@@ -794,7 +793,6 @@ end
 cd(thispath);       
 M_.params( 34 ) = 1/M_.params(88);
 coffispol = M_.params( 34 );
-steady;
 %
 % SHOCKS instructions
 %

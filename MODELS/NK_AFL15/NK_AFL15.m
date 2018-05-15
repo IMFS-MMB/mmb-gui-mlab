@@ -4,7 +4,6 @@
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-clear all
 tic;
 global M_ oo_ options_ ys0_ ex0_ estimation_info
 options_ = [];
@@ -839,8 +838,6 @@ M_.exo_det_length = 0;
 M_.Sigma_e(1, 1) = 0.01;
 M_.Sigma_e(2, 2) = 1;
 M_.Sigma_e(3, 3) = 1;
-options_.steadystate.nocheck = 1;
-steady;
 save('NK_AFL15_results.mat', 'oo_', 'M_', 'options_');
 if exist('estim_params_', 'var') == 1
   save('NK_AFL15_results.mat', 'estim_params_', '-append');

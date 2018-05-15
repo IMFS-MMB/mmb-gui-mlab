@@ -4,12 +4,6 @@
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-if isoctave || matlab_ver_less_than('8.6')
-    clear all
-else
-    clearvars -global
-    clear_persistent_variables(fileparts(which('dynare')), false)
-end
 tic0 = tic;
 % Save empty dates and dseries objects in memory.
 dates('initialize');
@@ -18,9 +12,9 @@ dseries('initialize');
 global M_ options_ oo_ estim_params_ bayestopt_ dataset_ dataset_info estimation_info ys0_ ex0_
 options_ = [];
 M_.fname = 'EAUS_NAWM08';
-M_.dynare_version = 'master-2017-05-12-ae50f25';
-oo_.dynare_version = 'master-2017-05-12-ae50f25';
-options_.dynare_version = 'master-2017-05-12-ae50f25';
+M_.dynare_version = '4.5.3';
+oo_.dynare_version = '4.5.3';
+options_.dynare_version = '4.5.3';
 %
 % Some global variables initialization
 %
@@ -2440,12 +2434,12 @@ oo_.steady_state(276)=oo_.steady_state(52);
 oo_.steady_state(277)=oo_.steady_state(64);
 oo_.steady_state(278)=oo_.steady_state(277);
 oo_.steady_state(279)=oo_.steady_state(167);
-if M_.exo_nbr > 0;
-	oo_.exo_simul = [ones(M_.maximum_lag,1)*oo_.exo_steady_state'];
-end;
-if M_.exo_det_nbr > 0;
-	oo_.exo_det_simul = [ones(M_.maximum_lag,1)*oo_.exo_det_steady_state'];
-end;
+if M_.exo_nbr > 0
+	oo_.exo_simul = ones(M_.maximum_lag,1)*oo_.exo_steady_state';
+end
+if M_.exo_det_nbr > 0
+	oo_.exo_det_simul = ones(M_.maximum_lag,1)*oo_.exo_det_steady_state';
+end
 %
 % SHOCKS instructions
 %

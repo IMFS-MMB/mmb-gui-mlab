@@ -30,11 +30,16 @@ global ruleslist;
 global exercise;
 global figure_handle;
 global AL_Models;
+global figure_handle_multi;
 exercise=modelbase.exercise;
 ruleslist=[handles.user,handles.mospporu,handles.taylor,handles.gero,handles.lewiwi,handles.smwous,...
     handles.cheiev,handles.orpwie08,handles.orpwie,handles.coenenetal2012,handles.chmoro];
 figure_handle = openfig('OPT2MENU_AL.fig','new','invisible');
 handles.almodels1=allchild(findobj(figure_handle,'Tag','groupalmodels'));
+figure_handle_multi = openfig('OPT2MENU_MULTI.fig','new','invisible');
+handles.ecmodels1=allchild(findobj(figure_handle_multi,'Tag','ecmodels1'));
+handles.soemodels1=allchild(findobj(figure_handle_multi,'Tag','soemodels1'));
+
 if verLessThan('matlab','8.4')
     % -- Code to run in MATLAB R2014a and earlier here --
     s=2;
@@ -46,11 +51,21 @@ for i=s:size(handles.almodels1,1)
     aa=get(handles.almodels1(i),'Tag');
     eval(['handles.' aa '= handles.almodels1(i);'])
 end
+for i=s:size(handles.ecmodels1,1)
+    aa=get(handles.ecmodels1(i),'Tag');
+    eval(['handles.' aa '= handles.ecmodels1(i);'])
+end
+for i=s:size(handles.soemodels1,1)
+    aa=get(handles.soemodels1(i),'Tag');
+    eval(['handles.' aa '= handles.soemodels1(i);'])
+end
+
+
 modelslist=[handles.nkrw97, handles.nklww03, handles.nkcgg99,...
     handles.nkcgg02, handles.nkmcn99cr, handles.nkir04,...
     handles.nkbgg99, handles.nkgm05, handles.nkgk09lin,...
     handles.nkck08, handles.nkckl09, handles.nkrw06,...
-    handles.usfm95, handles.usow98, handles.usfrb03,...
+    handles.uscmr14nofa, handles.uscmr14, handles.usfrb03,...
     handles.usfrb08, handles.usfrb08mx, handles.ussw07,...
     handles.usacelm, handles.usacelt, handles.usacelswm,...
     handles.usacelswt, handles.usrs99, handles.usor03,...
@@ -67,8 +82,8 @@ modelslist=[handles.nkrw97, handles.nklww03, handles.nkcgg99,...
     handles.usvmdno, handles.usvmdop, handles.eagnss10,...
     handles.nkmm10, handles.nkkrs12, handles.hkfp13,...
     handles.eausnawmctww,handles.nkcw09,handles.gpm6imf13,...
-    handles.cabmz12,handles.nkgk11,handles.uscmr14,...
-    handles.uscmr14nofa,handles.eaqr14,handles.nkrw97al,...
+    handles.cabmz12,handles.nkgk11,handles.usfm95,...
+    handles.usow98,handles.eaqr14,handles.nkrw97al,...
     handles.nklww03al,handles.nkcgg99al,handles.nkcgg02al,...
     handles.nkir04al,handles.nkbgg99al,handles.nkrw06al...
     handles.usfm95al,handles.ussw07al,handles.usmi07al,...
@@ -76,8 +91,14 @@ modelslist=[handles.nkrw97, handles.nklww03, handles.nkcgg99,...
     handles.eadkr11, handles.nkbgeu10,handles.nkbgus10,...
     handles.rbcdtt11,handles.uscfop14,handles.usjpt11,...
     handles.uscps10,handles.nkns14,handles.usdngs15,...
-    handles.usfms134,handles.nkafl15,handles.usfgk15];
-if exercise==1
+    handles.usfms134,handles.nkafl15,handles.usfgk15,...
+    handles.eapv15, handles.nkcfp10, handles.nkgm07, handles.nkkw16,...
+    handles.nkmpt10, handles.nkpp17, handles.nkpsv16, handles.nkra16,...
+    handles.nkst13, handles.usaj16, handles.uscfp17endo, handles.uscfp17exo,...
+    handles.usdngs15sw, handles.usdngs15swpi, handles.usdngs15swsp, handles.usfv10, ...
+    handles.usfv15, handles.usir15, handles.uslwy13, handles.usre09, handles.nkglsv07]; 
+    
+    if exercise==1
     set(handles.loprse, 'Enable', 'off')
 end
 checkall(ruleslist,0);
@@ -143,6 +164,7 @@ global modelslist;
 global model_with_rule;
 global rule;
 global AL_Models figure_handle;
+global figure_handle_multi;
 i=1:max(size(modelsvec));
 modelsvec(i)=0;
 if ~isempty(findobj(modelslist,'Tag',get(eventdata.NewValue,'Tag')))
@@ -172,7 +194,23 @@ elseif strcmp(get(hObject,'Tag'),'allalmodels')
         rule(2)=0;
    end
       end
-      set(handles.orpwie08, 'Enable','off'); %Disables the OW08 Rule if an AL model is selected
+    set(handles.orpwie08, 'Enable','off'); %Disables the OW08 Rule if an AL model is selected
+    
+elseif strcmp(get(hObject,'Tag'),'multimodelsopt2')
+     OPT2MENU_MULTI
+      waitfor(OPT2MENU_MULTI);
+   try 
+   number =  find(modelsvec);
+   if ~isempty(find(model_with_rule==number))
+        set(handles.mospporu, 'Enable','on');
+   else
+        set(handles.mospporu, 'Enable','off');
+        set(handles.mospporu, 'Value',0);
+        rule(2)=0;
+   end
+   end
+
+      
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -229,13 +267,13 @@ end
 %%%%%% pdf file for model description
 function infomodels_Callback(hObject, eventdata, handles)
 
-open('MMB_model_description.pdf')
+winopen('MMB_model_description.pdf')
 
 
 %%%%%% pdf file for rule description
 function inforules_Callback(hObject, eventdata, handles)
 
-open('MMB_MPrule_description.pdf')
+winopen('MMB_MPrule_description.pdf')
 
 
 %%%%%% Specified the Output file

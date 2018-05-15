@@ -4,7 +4,6 @@
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-clear all
 tic;
 global M_ oo_ options_ ys0_ ex0_ estimation_info
 options_ = [];
@@ -490,7 +489,7 @@ oo_.exo_steady_state = zeros(3, 1);
 M_.params = NaN(59, 1);
 M_.NNZDerivatives = zeros(3, 1);
 M_.NNZDerivatives(1) = 147;
-M_.NNZDerivatives(2) = 4;
+M_.NNZDerivatives(2) = 0;
 M_.NNZDerivatives(3) = -1;
 M_.params( 45 ) = 0.25;
 x_ = M_.params( 45 );

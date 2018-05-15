@@ -1,26 +1,13 @@
 %
-% Status : main Dynare file
+% Status : main Dynare file 
 %
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-if isoctave || matlab_ver_less_than('8.6')
-    clear all
-else
-    clearvars -global
-    clear_persistent_variables(fileparts(which('dynare')), false)
-end
-tic0 = tic;
-% Save empty dates and dseries objects in memory.
-dates('initialize');
-dseries('initialize');
-% Define global variables.
-global M_ options_ oo_ estim_params_ bayestopt_ dataset_ dataset_info estimation_info ys0_ ex0_
+tic;
+global M_ oo_ options_ ys0_ ex0_ estimation_info
 options_ = [];
 M_.fname = 'EACZ_GEM03';
-M_.dynare_version = 'master-2017-05-12-ae50f25';
-oo_.dynare_version = 'master-2017-05-12-ae50f25';
-options_.dynare_version = 'master-2017-05-12-ae50f25';
 %
 % Some global variables initialization
 %
@@ -927,7 +914,6 @@ M_.endo_names_long = char(M_.endo_names_long, 'AUX_ENDO_LAG_107_1');
 M_.endo_names = char(M_.endo_names, 'AUX_ENDO_LAG_107_2');
 M_.endo_names_tex = char(M_.endo_names_tex, 'AUX\_ENDO\_LAG\_107\_2');
 M_.endo_names_long = char(M_.endo_names_long, 'AUX_ENDO_LAG_107_2');
-M_.endo_partitions = struct();
 M_.param_names = 'cofintintb1';
 M_.param_names_tex = 'cofintintb1';
 M_.param_names_long = 'cofintintb1';
@@ -1471,7 +1457,6 @@ M_.param_names_long = char(M_.param_names_long, 'PIE4NF_EXOG');
 M_.param_names = char(M_.param_names, 'PIEBAR4QF_EXOG');
 M_.param_names_tex = char(M_.param_names_tex, 'PIEBAR4QF\_EXOG');
 M_.param_names_long = char(M_.param_names_long, 'PIEBAR4QF_EXOG');
-M_.param_partitions = struct();
 M_.exo_det_nbr = 0;
 M_.exo_nbr = 14;
 M_.endo_nbr = 286;
@@ -1626,16 +1611,11 @@ M_.Correlation_matrix = eye(14, 14);
 M_.H = 0;
 M_.Correlation_matrix_ME = 1;
 M_.sigma_e_is_diagonal = 1;
-M_.det_shocks = [];
 options_.block=0;
 options_.bytecode=0;
 options_.use_dll=0;
-M_.hessian_eq_zero = 0;
 erase_compiled_function('EACZ_GEM03_static');
 erase_compiled_function('EACZ_GEM03_dynamic');
-M_.orig_eq_nbr = 241;
-M_.eq_nbr = 286;
-M_.ramsey_eq_nbr = 0;
 M_.lead_lag_incidence = [
  1 114 0;
  2 115 0;
@@ -1943,7 +1923,10 @@ M_.maximum_exo_lag = 0;
 M_.maximum_exo_lead = 0;
 oo_.exo_steady_state = zeros(14, 1);
 M_.params = NaN(181, 1);
-M_.NNZDerivatives = [1264; 3707; -1];
+M_.NNZDerivatives = zeros(3, 1);
+M_.NNZDerivatives(1) = 1264;
+M_.NNZDerivatives(2) = 3707;
+M_.NNZDerivatives(3) = -1;
 M_.params( 35 ) = 5;
 COSTLF = M_.params( 35 );
 M_.params( 36 ) = 5;
@@ -2234,9 +2217,9 @@ M_.params( 178 ) = 1.125;
 PIE4F_EXOG = M_.params( 178 );
 M_.params( 179 ) = M_.params(178)^0.25/M_.params(71);
 interest_EXOG = M_.params( 179 );
-M_.params( 180 ) = 1.125000000000004;
+M_.params( 180 ) = 1.125000000000005;
 PIE4NF_EXOG = M_.params( 180 );
-M_.params( 181 ) = 1.125000000000004;
+M_.params( 181 ) = 1.125000000000005;
 PIEBAR4QF_EXOG = M_.params( 181 );
 thispath = cd;                                                           
 cd('..');                                                                
@@ -2558,6 +2541,7 @@ end;
 %
 % SHOCKS instructions
 %
+make_ex_;
 M_.exo_det_length = 0;
 M_.Sigma_e(1, 1) = (0.017)^2;
 M_.Sigma_e(2, 2) = (0.004)^2;
@@ -2586,15 +2570,9 @@ end
 if exist('estimation_info', 'var') == 1
   save('EACZ_GEM03_results.mat', 'estimation_info', '-append');
 end
-if exist('dataset_info', 'var') == 1
-  save('EACZ_GEM03_results.mat', 'dataset_info', '-append');
-end
-if exist('oo_recursive_', 'var') == 1
-  save('EACZ_GEM03_results.mat', 'oo_recursive_', '-append');
-end
 
 
-disp(['Total computing time : ' dynsec2hms(toc(tic0)) ]);
+disp(['Total computing time : ' dynsec2hms(toc) ]);
 if ~isempty(lastwarn)
   disp('Note: warning(s) encountered in MATLAB/Octave code')
 end

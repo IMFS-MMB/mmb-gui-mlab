@@ -193,7 +193,7 @@ Welf = -261.07;
 y_t = -1.62713;
 end;
 
-steady(solve_algo=2);       
+%steady(solve_algo=2);       
 check;                      
 
 

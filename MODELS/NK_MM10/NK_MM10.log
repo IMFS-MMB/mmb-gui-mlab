@@ -12,9 +12,6 @@ Computing dynamic model derivatives:
 Processing outputs ...done
 Preprocessing completed.
 Starting MATLAB/Octave computing.
-
 bigAtemp =
-
     0.0123
-
-Total computing time : 0h00m01s
+Total computing time : 0h00m00s

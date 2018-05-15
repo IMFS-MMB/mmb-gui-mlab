@@ -1,5 +1,5 @@
 function varargout = OPT1MENU(varargin)
-% Last Modified by GUIDE v2.5 30-May-2017 18:48:08
+% Last Modified by GUIDE v2.5 25-Apr-2018 16:56:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -29,8 +29,12 @@ global ruleslist;
 global modelslist;
 global exercise;
 global figure_handle;
+global figure_multi_handle;
 figure_handle = openfig('OPT1MENU_AL.fig','new','invisible');
 handles.almodels1=allchild(findobj(figure_handle,'Tag','almodels'));
+figure_multi_handle = openfig('OPT1MENU_MULTI.fig','new','invisible');
+handles.ecmodels1=allchild(findobj(figure_multi_handle,'Tag','ecmodels1'));
+
 if verLessThan('matlab','8.4')
     % -- Code to run in MATLAB R2014a and earlier here --
     s=2;
@@ -42,7 +46,14 @@ for i=s:size(handles.almodels1,1)
     aa=get(handles.almodels1(i),'Tag');
     eval(['handles.' aa '= handles.almodels1(i);'])
 end
-exercise=modelbase.exercise;
+
+for i=s:size(handles.ecmodels1,1)
+    aa=get(handles.ecmodels1(i),'Tag');
+    eval(['handles.' aa '= handles.ecmodels1(i);'])
+end
+
+
+exercise=1;
 ruleslist=[handles.user,handles.ho,handles.taylor,handles.gero,handles.lewiwi,handles.smwous,...
     handles.cheiev,handles.orpwie08,handles.orpwie,handles.coenenetal2012,handles.chmoro];
 % Since the model specific rule is available only in the second option we fill the never-used handle (handle.ho) in that position.
@@ -50,7 +61,7 @@ modelslist=[handles.nkrw97, handles.nklww03, handles.nkcgg99,...
     handles.nkcgg02, handles.nkmcn99cr, handles.nkir04,...
     handles.nkbgg99, handles.nkgm05, handles.nkgk09lin,...
     handles.nkck08, handles.nkckl09, handles.nkrw06,...
-    handles.usfm95, handles.usow98, handles.usfrb03,...
+    handles.uscmr14nofa, handles.uscmr14, handles.usfrb03,...
     handles.usfrb08, handles.usfrb08mx, handles.ussw07,...
     handles.usacelm, handles.usacelt, handles.usacelswm,...
     handles.usacelswt, handles.usrs99, handles.usor03,...
@@ -67,8 +78,8 @@ modelslist=[handles.nkrw97, handles.nklww03, handles.nkcgg99,...
     handles.usvmdno, handles.usvmdop, handles.eagnss10,...
     handles.nkmm10, handles.nkkrs12, handles.hkfp13,...
     handles.eausnawmctww,handles.nkcw09,handles.gpm6imf13,...
-    handles.cabmz12,handles.nkgk11,handles.uscmr14,...
-    handles.uscmr14nofa,handles.eaqr14,handles.nkrw97al,...
+    handles.cabmz12,handles.nkgk11,handles.usfm95,...
+    handles.usow98,handles.eaqr14,handles.nkrw97al,...
     handles.nklww03al,handles.nkcgg99al,handles.nkcgg02al,...
     handles.nkir04al,handles.nkbgg99al,handles.nkrw06al...
     handles.usfm95al,handles.ussw07al,handles.usmi07al,...
@@ -76,7 +87,12 @@ modelslist=[handles.nkrw97, handles.nklww03, handles.nkcgg99,...
     handles.eadkr11, handles.nkbgeu10,handles.nkbgus10,...
     handles.rbcdtt11,handles.uscfop14,handles.usjpt11,...
     handles.uscps10,handles.nkns14,handles.usdngs15,...
-    handles.usfms134,handles.nkafl15,handles.usfgk15]; 
+    handles.usfms134,handles.nkafl15,handles.usfgk15,...
+    handles.eapv15, handles.nkcfp10, handles.nkgm07, handles.nkkw16,...
+    handles.nkmpt10, handles.nkpp17, handles.nkpsv16, handles.nkra16,...
+    handles.nkst13, handles.usaj16, handles.uscfp17endo, handles.uscfp17exo,...
+    handles.usdngs15sw, handles.usdngs15swpi, handles.usdngs15swsp, handles.usfv10, ...
+    handles.usfv15, handles.usir15, handles.uslwy13, handles.usre09, handles.nkglsv07]; 
 if exercise==2
     set(handles.loprse, 'Enable', 'off')
 end
@@ -130,6 +146,8 @@ global Est_EA_Models;
 global Est_Cal_Models;
 global Est_SOE_Models;
 global figure_handle;
+global figure_multi_handle
+global AL_Models;
 if ~isempty(findobj(modelslist,'Tag',get(hObject,'Tag')))
     modelsvec(find(modelslist==findobj(modelslist,'Tag',get(hObject,'Tag'))))=get(hObject,'Value');
 end
@@ -143,32 +161,35 @@ switch get(hObject,'Tag')
     case 'eamodels'
         modelsvec(Est_EA_Models) = get(hObject,'Value');
         set(modelslist(Est_EA_Models), 'Value', get(hObject,'Value'));
-    case 'ecmodels'
-        modelsvec(Est_Cal_Models) = get(hObject,'Value');
-        set(modelslist(Est_Cal_Models), 'Value', get(hObject,'Value'));
-    case 'soemodels'
-        modelsvec(Est_SOE_Models) = get(hObject,'Value');
-        set(modelslist(Est_SOE_Models), 'Value', get(hObject,'Value'));
     case 'almodelsopt1'
-        if get(hObject,'Value') 
+        if get(hObject,'Value')
             try
-            OPT1MENU_AL
-%             set(figure_handle,'Visible','on'); 
+                OPT1MENU_AL
+                %             set(figure_handle,'Visible','on');
+                if max(modelsvec(AL_Models))==0;
+                    set(handles.almodels1,'Value',0);
+                end
             catch
             end
-            %waitfor(OPT1MENU_AL);
+            waitfor(OPT1MENU_AL);
             set(handles.orpwie08, 'Enable','off'); %Disables the OW08 Rule if no AL model is selected
-            set(handles.orpwie, 'Enable','off'); %Disable the OW13 rule as it has more than one lag on inflation 
-            set(handles.coenenetal2012, 'Enable','off'); %Disable the Coenen et al rule as it has more than one lead on inflation 
+            set(handles.orpwie, 'Enable','off'); %Disable the OW13 rule as it has more than one lag on inflation
+            set(handles.coenenetal2012, 'Enable','off'); %Disable the Coenen et al rule as it has more than one lead on inflation
         else
-            try 
-            set(figure_handle,'Visible','off'); 
-            set(handles.almodels1,'Value',0);
+            try
+                set(figure_handle,'Visible','off');
+                set(handles.almodels1,'Value',0);
             catch
             end
             set(handles.orpwie08, 'Enable','on'); %Re-enables the OW08 Rule if no AL model is selected
-            set(handles.orpwie, 'Enable','on'); %Re-enable the OW13 rule as it has more than one lag on inflation 
-            set(handles.coenenetal2012, 'Enable','on'); %Re-enable the Coenen et al rule 
+            set(handles.orpwie, 'Enable','on'); %Re-enable the OW13 rule as it has more than one lag on inflation
+            set(handles.coenenetal2012, 'Enable','on'); %Re-enable the Coenen et al rule
+        end
+    case 'multimodelsopt1'
+        if get(hObject,'Value')
+            OPT1MENU_MULTI
+            %            waitfor(OPT1MENU_MULTI)
+            %             set(figure_handle,'Visible','on');
         end
 end
 
@@ -248,7 +269,7 @@ results= [get(hObject,'String') '.xls'];
 %%%%%% Load Previous Settings
 function loprse_Callback(hObject, eventdata, handles)
 load('Modelbase.mat')
-global option1 option2 option3 option4 option5 option6 data shocks rule modelsvec exercise ruleslist modelslist horizon AL_Models
+global option1 option2 option3 option4 option5 option6 data shocks rule modelsvec exercise ruleslist modelslist horizon AL_Models Est_Cal_Models Est_SOE_Models
 exercise = modelbase.exercise;
 if exercise == 1
     option1 = modelbase.option(1); option2 = modelbase.option(2); option5 = modelbase.option(5);
@@ -295,7 +316,13 @@ if exercise == 1
         set(handles.almodelsopt1,'Value',1);
         %waitfor(OPT1MENU_AL);
     end
+    
+  if max(modelsvec(Est_SOE_Models)) || max(modelsvec(Est_Cal_Models))
+        set(handles.multimodelsopt1,'Value',1);
+        OPT1MENU_MULTI
+    end
     set(handles.ho, 'String', horizon)
+    
 else disp('No previous setting is available.')
 end
 clear Modelbase.mat
@@ -305,9 +332,10 @@ set(models, 'Value', val);
 
 %%%%%% Callback for Continue Button .
 function togglebutton1_Callback(hObject, eventdata, handles)
-global modelsvec shocks rule option6 option1 option2 option5 figure_handle
+global modelsvec shocks rule option6 option1 option2 option5 figure_handle figure_multi_handle
 try
 delete(figure_handle); % Close the GUI OPT1MENU_AL
+  delete(figure_multi_handle); % Close the GUI OPT1MENU_MULTI
 catch
 end
 if isempty(find(modelsvec>0))

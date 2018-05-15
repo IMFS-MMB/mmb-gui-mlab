@@ -1,4 +1,4 @@
-Starting Dynare (version master-2017-05-12-ae50f25).
+Starting Dynare (version 4.5.3).
 Starting preprocessing of the model file ...
 Substitution of endo leads >= 2: added 18 auxiliary variables and equations.
 Substitution of endo lags >= 2: added 28 auxiliary variables and equations.
@@ -12,4 +12,4 @@ Computing dynamic model derivatives:
 Processing outputs ...
 done
 Preprocessing completed.
-Total computing time : 0h00m01s
+Total computing time : 0h00m00s
