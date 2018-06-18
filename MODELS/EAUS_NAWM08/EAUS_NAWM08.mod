@@ -1012,6 +1012,8 @@ US_RRSTAR =1.00741706786548;
 
 end;
 
+steady(maxit=50000, solve_algo=3);
+
 shocks;
 var	fiscal_ = 0; //EA_EPSG
 //var	EA_EPSR=0;
