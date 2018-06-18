@@ -75,7 +75,7 @@ function varargout = OPT2MENU_MULTI_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes when selected object is changed in groupalmodels.
+% --- Executes when selected object is changed in ecmodels.
 function ecmodels1_SelectionChangeFcn(hObject, eventdata, handles)
 global modelsvec;
 global modelslist;
