@@ -4,6 +4,8 @@ addpath(modelbase.homepath);
 modelbase.uphomepath =cd(cd('..'));
 addpath(modelbase.uphomepath);
 statusbar(0, 'Busy...');
+
+
 %*******************************************************************************************************
 %                    This File For The First Exercise (MMBOPT1)                                        %
 %*******************************************************************************************************
@@ -129,6 +131,7 @@ save policy_param.mat cofintintb1 cofintintb2 cofintintb3 cofintintb4...
     std_r_ std_r_quart ;
 cd('..');
 cd MMB_OPTIONS
+diary([modelbase.savepath(1:end-4),'.txt']); % Storing the Command window into a log file before dynare switches diary off
 
 disp(' ')
 disp('Selected Policy Rule:');
@@ -252,6 +255,7 @@ for epsilon=1:size(modelbase.models,2)
     end
     save -append Modelbase modelbase
     warning('off','all')
+    diary([modelbase.savepath(1:end-4),'.txt']); % Storing the Dynare simulations into a log file
     modelbase=stoch_simul_MMB(modelbase);                                     % solve model
     solution_found(epsilon)=modelbase.solution;
     cd(modelbase.homepath);                                                   % go back to main directory
@@ -579,6 +583,7 @@ if size(modelbase.models,2)==1
 else
 end;
 statusbar(0, '');
+diary off;
 try
     modelbase=rmfield(modelbase,'figHandle');
     modelbase=rmfield(modelbase,'figHandleRest');

@@ -209,6 +209,7 @@ for i=1:size(modelbase.rulenames,1)
             std_r_ std_r_quart ;
         cd('..');
         cd MMB_OPTIONS
+        diary([modelbase.savepath(1:end-4),'.txt']); % Storing the Command window into a log file before dynare switches diary off
         % disp(' ')
         % disp('Selected Policy Rule:');
         % disp(deblank(modelbase.rulenames(modelbase.rule,:)));
@@ -291,6 +292,7 @@ for i=1:size(modelbase.rulenames,1)
         end
         
         save -append Modelbase modelbase 
+        diary([modelbase.savepath(1:end-4),'.txt']); % Storing the Dynare simulations into a log file
         modelbase=stoch_simul_MMB(modelbase);                                     % solve model
         cd(modelbase.homepath);                                                   % go back to main directory
         %toc
@@ -674,6 +676,7 @@ modelbase.totaltime = cputime-modelbase.totaltime;
 disp(' '); disp(' ');
 disp(['Total elapsed cputime: ' ,num2str(modelbase.totaltime), ' seconds.']);
 statusbar(0, '');
+diary off;
 rmpath(modelbase.homepath);
 cd('..');
 
